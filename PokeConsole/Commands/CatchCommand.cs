@@ -1,4 +1,5 @@
 using PokeConsole.Commands.Base;
+using PokeConsole.Registries;
 
 namespace PokeConsole.Commands;
 

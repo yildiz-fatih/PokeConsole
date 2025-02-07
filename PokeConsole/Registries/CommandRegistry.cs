@@ -1,6 +1,6 @@
 using PokeConsole.Commands.Base;
 
-namespace PokeConsole;
+namespace PokeConsole.Registries;
 
 public static class CommandRegistry
 {
