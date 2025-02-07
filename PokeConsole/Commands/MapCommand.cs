@@ -5,7 +5,7 @@ namespace PokeConsole.Commands;
 public class MapCommand : Command
 {
     public override string Name { get; } = "map";
-    public override string Description { get; } = "Displays the first 20 locations on the map.";
+    public override string Description { get; } = "Show location areas";
     public override async Task ExecuteAsync(params string[] args)
     {
         Console.WriteLine("Loading map...");

@@ -5,7 +5,7 @@ namespace PokeConsole.Commands;
 public class ExploreCommand : Command
 {
     public override string Name { get; } = "explore";
-    public override string Description { get; } = "Displays all Pokemon in a specified location area";
+    public override string Description { get; } = "Show Pokemon in location area";
     public override async Task ExecuteAsync(params string[] args)
     {
         var locationArea = args[1];

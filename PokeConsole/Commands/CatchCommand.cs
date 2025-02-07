@@ -6,7 +6,7 @@ namespace PokeConsole.Commands;
 public class CatchCommand : Command
 {
     public override string Name { get; } = "catch";
-    public override string Description { get; } = "Catch a Pokemon.";
+    public override string Description { get; } = "Attempt to catch a Pokemon";
     public override async Task ExecuteAsync(params string[] args)
     {
         var pokemonName = args[1];

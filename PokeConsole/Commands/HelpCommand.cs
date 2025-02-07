@@ -6,7 +6,7 @@ namespace PokeConsole.Commands;
 public class HelpCommand : Command
 {
     public override string Name { get; } = "help";
-    public override string Description { get; } = "Displays all available commands";
+    public override string Description { get; } = "Show available commands";
     public override Task ExecuteAsync(params string[] args)
     {
         Console.WriteLine("Available Commands:");

@@ -6,7 +6,7 @@ namespace PokeConsole.Commands;
 public class InspectCommand : Command
 {
     public override string Name { get; } = "inspect";
-    public override string Description { get; } = "Gets info about a Pokemon";
+    public override string Description { get; } = "Show caught Pokemon details";
     public override Task ExecuteAsync(params string[] args)
     {
         var pokemonName = args[1];
