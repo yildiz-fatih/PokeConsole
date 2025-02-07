@@ -18,6 +18,8 @@ public class Program
         CommandRegistry.Register(new ExitCommand());
         CommandRegistry.Register(new MapCommand());
         CommandRegistry.Register(new ExploreCommand());
+
+        PrintWelcomeMessage();
         
         while (true)
         {
@@ -43,4 +45,14 @@ public class Program
             await command.ExecuteAsync(commandSplit);
         }
     }
+
+    private static void PrintWelcomeMessage()
+    {
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine("  Welcome to PokeConsole!");
+        Console.WriteLine("  Type 'help' for a list of available commands.");
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+
 }
