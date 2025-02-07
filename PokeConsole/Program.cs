@@ -2,7 +2,7 @@
 
 namespace PokeConsole;
 /*
- * STEP 3: Add support for the command 'map'
+ * STEP 4: Add support for the command 'explore'
  */
 public class Program
 {
@@ -17,6 +17,7 @@ public class Program
         CommandRegistry.Register(new HelpCommand());
         CommandRegistry.Register(new ExitCommand());
         CommandRegistry.Register(new MapCommand());
+        CommandRegistry.Register(new ExploreCommand());
         
         while (true)
         {
@@ -39,7 +40,7 @@ public class Program
                 continue;
             }
             
-            await command.ExecuteAsync();
+            await command.ExecuteAsync(commandSplit);
         }
     }
 }
