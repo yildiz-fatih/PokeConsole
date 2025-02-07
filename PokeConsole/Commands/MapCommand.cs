@@ -1,5 +1,3 @@
-using System.Net.Http.Json;
-using System.Text.Json;
 using PokeConsole.Commands.Base;
 
 namespace PokeConsole.Commands;
@@ -11,15 +9,13 @@ public class MapCommand : Command
     public override async Task ExecuteAsync(params string[] args)
     {
         Console.WriteLine("Loading map...");
-        
-        var httpClient = new HttpClient();
-        var response = await httpClient.GetAsync("https://pokeapi.co/api/v2/location-area/");
-        var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+        var locationAreas = await PokeApiService.GetLocationAreas();
 
         Console.WriteLine("Location areas:");
-        foreach (var location in responseBody.GetProperty("results").EnumerateArray())
+        foreach (var name in locationAreas)
         {
-            Console.WriteLine($"- {location.GetProperty("name").GetString()}");
+            Console.WriteLine($"- {name}");
         }
     }
 }

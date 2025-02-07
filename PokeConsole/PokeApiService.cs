@@ -68,4 +68,23 @@ public static class PokeApiService
         
         return pokemons;
     }
+
+    public static async Task<List<string>> GetLocationAreas()
+    {
+        var locationAreas = new List<string>();
+
+        var httpClient = new HttpClient();
+        var response = await httpClient.GetAsync("https://pokeapi.co/api/v2/location-area/");
+        var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+        var results = responseBody.GetProperty("results").EnumerateArray();
+
+        foreach (var location in results)
+        {
+            var name = location.GetProperty("name").GetString();
+            locationAreas.Add(name);
+        }
+        
+        return locationAreas;
+    }
 }
