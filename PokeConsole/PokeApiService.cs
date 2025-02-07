@@ -69,21 +69,34 @@ public static class PokeApiService
         return pokemons;
     }
 
-    public static async Task<List<string>> GetLocationAreas()
+    public static async Task<LocationAreasResult> GetLocationAreas(string url)
     {
-        var locationAreas = new List<string>();
-
-        var response = await HttpClient.GetAsync("https://pokeapi.co/api/v2/location-area/");
+        var response = await HttpClient.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+    
         var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
+        var result = new LocationAreasResult();
 
-        var results = responseBody.GetProperty("results").EnumerateArray();
-
-        foreach (var location in results)
+        foreach (var location in responseBody.GetProperty("results").EnumerateArray())
         {
-            var name = location.GetProperty("name").GetString();
-            locationAreas.Add(name);
+            result.Names.Add(location.GetProperty("name").GetString());
         }
-        
-        return locationAreas;
+
+        // Get the "next" property from the JSON response.
+        JsonElement nextElement = responseBody.GetProperty("next");
+        if (nextElement.ValueKind != JsonValueKind.Null)
+        {
+            result.NextUrl = nextElement.GetString();
+        }
+
+        // Get the "previous" property from the JSON response.
+        JsonElement previousElement = responseBody.GetProperty("previous");
+        if (previousElement.ValueKind != JsonValueKind.Null)
+        {
+            result.PreviousUrl = previousElement.GetString();
+        }
+
+
+        return result;
     }
 }

@@ -10,10 +10,14 @@ public class MapCommand : Command
     {
         Console.WriteLine("Loading map...");
 
-        var locationAreas = await PokeApiService.GetLocationAreas();
+        var url = AppState.NextLocationsUrl ?? "https://pokeapi.co/api/v2/location-area/";
+        var result = await PokeApiService.GetLocationAreas(url);
 
+        AppState.NextLocationsUrl = result.NextUrl;
+        AppState.PreviousLocationsUrl = result.PreviousUrl;
+        
         Console.WriteLine("Location areas:");
-        foreach (var name in locationAreas)
+        foreach (var name in result.Names)
         {
             Console.WriteLine($"- {name}");
         }
