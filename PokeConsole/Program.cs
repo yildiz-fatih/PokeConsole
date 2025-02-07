@@ -2,7 +2,7 @@
 
 namespace PokeConsole;
 /*
- * STEP 4: Add support for the command 'explore'
+ * STEP 5: Add support for the command 'catch'
  */
 public class Program
 {
@@ -18,6 +18,7 @@ public class Program
         CommandRegistry.Register(new ExitCommand());
         CommandRegistry.Register(new MapCommand());
         CommandRegistry.Register(new ExploreCommand());
+        CommandRegistry.Register(new CatchCommand());
 
         PrintWelcomeMessage();
         
