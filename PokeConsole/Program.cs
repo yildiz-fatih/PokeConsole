@@ -1,4 +1,6 @@
-﻿namespace PokeConsole;
+﻿using PokeConsole.Commands;
+
+namespace PokeConsole;
 /*
  * STEP 2: Add support for commands:
  *          help: prints a help message describing how to use the REPL
@@ -13,30 +15,32 @@ public class Program
 
     private static void StartPokeConsole()
     {
+        /* registers commands to the 'database of commands' (but in memory!) */
+        CommandRegistry.Register(new HelpCommand());
+        CommandRegistry.Register(new ExitCommand());
+        
         while (true)
         {
             Console.Write("PokeConsole > ");
-            var command = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(command))
+            var input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
             {
                 continue;
             }
-            var commandSplit = command.Trim().ToLower().Split(' ');
-            if (commandSplit[0] == "exit")
+            
+            var commandSplit = input.Trim().ToLower().Split(' ');
+            
+            var commandName = commandSplit[0];
+            var command = CommandRegistry.Get(commandName);
+
+            if (command == null)
             {
-                break;
+                Console.WriteLine("Unknown command!");
+                Console.WriteLine("Type 'help' for a list of available commands.");
+                continue;
             }
-            else if (commandSplit[0] == "help")
-            {
-                Console.WriteLine("Welcome to PokeConsole!");
-                Console.WriteLine("Usage:");
-                Console.WriteLine("help: Displays a help message");
-                Console.WriteLine("exit: Exit PokeConsole");
-            }
-            else
-            {
-                Console.WriteLine($"Unknown command: {command}");
-            }
+            
+            command.Execute();
         }
     }
 }
