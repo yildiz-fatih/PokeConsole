@@ -1,5 +1,3 @@
-using System.Net.Http.Json;
-using System.Text.Json;
 using PokeConsole.Commands.Base;
 
 namespace PokeConsole.Commands;
@@ -13,16 +11,11 @@ public class ExploreCommand : Command
         var locationArea = args[1];
         Console.WriteLine($"Exploring {locationArea}...");
 
-        var httpClient = new HttpClient();
-        var response = await httpClient.GetAsync("https://pokeapi.co/api/v2/location-area/" + locationArea);
-        var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
-        
-        var pokemonEncounters = responseBody.GetProperty("pokemon_encounters").EnumerateArray();
-        
+        var pokemons = await PokeApiService.GetPokemonsInLocationArea(locationArea);
+
         Console.WriteLine("Found Pokemon:");
-        foreach (var encounter in pokemonEncounters)
+        foreach (var name in pokemons)
         {
-            var name = encounter.GetProperty("pokemon").GetProperty("name").GetString();
             Console.WriteLine($"- {name}");
         }
     }

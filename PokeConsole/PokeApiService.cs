@@ -50,4 +50,22 @@ public static class PokeApiService
             Types = types
         };
     }
+
+    public static async Task<List<string>> GetPokemonsInLocationArea(string locationAreaName)
+    {
+        var pokemons = new List<string>();
+
+        var response = await HttpClient.GetAsync($"{BaseUrl}location-area/{locationAreaName}");
+        var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
+        
+        var pokemonEncounters = responseBody.GetProperty("pokemon_encounters").EnumerateArray();
+        
+        foreach (var encounter in pokemonEncounters)
+        {
+            var name = encounter.GetProperty("pokemon").GetProperty("name").GetString();
+            pokemons.Add(name);
+        }
+        
+        return pokemons;
+    }
 }
