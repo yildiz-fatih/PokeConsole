@@ -10,7 +10,7 @@ public static class PokeApiService
 
     public static async Task<Pokemon> GetPokemon(string pokemonName)
     {
-        var url = $"{BaseUrl}{pokemonName}";
+        var url = $"{BaseUrl}pokemon/{pokemonName}";
         var httpClient = new HttpClient();
         var response = await httpClient.GetAsync(url);
         var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
