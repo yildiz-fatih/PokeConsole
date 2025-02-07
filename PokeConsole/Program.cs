@@ -1,9 +1,23 @@
 ﻿namespace PokeConsole;
-
-class Program
+/*
+ * STEP 1: Build the basic app:
+ *          a loop that parses and cleans an input and prints the first word back to the user
+ */
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        StartPokeConsole();
+    }
+
+    private static void StartPokeConsole()
+    {
+        while (true)
+        {
+            Console.Write("PokeConsole > ");
+            var command = Console.ReadLine();
+            var commandSplit = command.Trim().ToLower().Split(' ');
+            Console.WriteLine("Your command was: " + commandSplit[0]);
+        }
     }
 }
