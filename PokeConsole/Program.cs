@@ -1,9 +1,7 @@
 ﻿using PokeConsole.Commands;
 
 namespace PokeConsole;
-/*
- * STEP 6: Add support for the commands 'inspect' and 'pokedex'
- */
+
 public class Program
 {
     public static async Task Main()
@@ -13,15 +11,7 @@ public class Program
 
     private static async Task StartPokeConsole()
     {
-        /* registers commands to the 'database of commands' (but in memory!) */
-        CommandRegistry.Register(new HelpCommand());
-        CommandRegistry.Register(new ExitCommand());
-        CommandRegistry.Register(new MapCommand());
-        CommandRegistry.Register(new ExploreCommand());
-        CommandRegistry.Register(new CatchCommand());
-        CommandRegistry.Register(new InspectCommand());
-        CommandRegistry.Register(new PokeconsoleCommand());
-
+        RegisterCommands();
         PrintWelcomeMessage();
         
         while (true)
@@ -55,6 +45,18 @@ public class Program
         Console.WriteLine("  Welcome to PokeConsole!");
         Console.WriteLine("  Type 'help' for a list of available commands.");
         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+    /* registers commands to the 'database of commands' (but in memory!) */
+    private static void RegisterCommands()
+    {
+        CommandRegistry.Register(new PokeconsoleCommand());
+        CommandRegistry.Register(new HelpCommand());
+        CommandRegistry.Register(new ExitCommand());
+        CommandRegistry.Register(new MapCommand());
+        CommandRegistry.Register(new ExploreCommand());
+        CommandRegistry.Register(new CatchCommand());
+        CommandRegistry.Register(new InspectCommand());
     }
 
 
