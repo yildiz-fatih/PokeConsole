@@ -11,8 +11,7 @@ public static class PokeApiService
     public static async Task<Pokemon> GetPokemon(string pokemonName)
     {
         var url = $"{BaseUrl}pokemon/{pokemonName}";
-        var httpClient = new HttpClient();
-        var response = await httpClient.GetAsync(url);
+        var response = await HttpClient.GetAsync(url);
         var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
         
         return ParsePokemon(responseBody);
@@ -73,8 +72,7 @@ public static class PokeApiService
     {
         var locationAreas = new List<string>();
 
-        var httpClient = new HttpClient();
-        var response = await httpClient.GetAsync("https://pokeapi.co/api/v2/location-area/");
+        var response = await HttpClient.GetAsync("https://pokeapi.co/api/v2/location-area/");
         var responseBody = await response.Content.ReadFromJsonAsync<JsonElement>();
 
         var results = responseBody.GetProperty("results").EnumerateArray();
