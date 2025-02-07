@@ -2,7 +2,7 @@
 
 namespace PokeConsole;
 /*
- * STEP 5: Add support for the command 'catch'
+ * STEP 6: Add support for the commands 'inspect' and 'pokedex'
  */
 public class Program
 {
@@ -19,6 +19,8 @@ public class Program
         CommandRegistry.Register(new MapCommand());
         CommandRegistry.Register(new ExploreCommand());
         CommandRegistry.Register(new CatchCommand());
+        CommandRegistry.Register(new InspectCommand());
+        CommandRegistry.Register(new PokeconsoleCommand());
 
         PrintWelcomeMessage();
         
