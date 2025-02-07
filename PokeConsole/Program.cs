@@ -1,7 +1,8 @@
 ﻿namespace PokeConsole;
 /*
- * STEP 1: Build the basic app:
- *          a loop that parses and cleans an input and prints the first word back to the user
+ * STEP 2: Add support for commands:
+ *          help: prints a help message describing how to use the REPL
+ *          exit: exits the program
  */
 public class Program
 {
@@ -16,8 +17,26 @@ public class Program
         {
             Console.Write("PokeConsole > ");
             var command = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(command))
+            {
+                continue;
+            }
             var commandSplit = command.Trim().ToLower().Split(' ');
-            Console.WriteLine("Your command was: " + commandSplit[0]);
+            if (commandSplit[0] == "exit")
+            {
+                break;
+            }
+            else if (commandSplit[0] == "help")
+            {
+                Console.WriteLine("Welcome to PokeConsole!");
+                Console.WriteLine("Usage:");
+                Console.WriteLine("help: Displays a help message");
+                Console.WriteLine("exit: Exit PokeConsole");
+            }
+            else
+            {
+                Console.WriteLine($"Unknown command: {command}");
+            }
         }
     }
 }
