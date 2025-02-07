@@ -55,6 +55,7 @@ public class Program
         CommandRegistry.Register(new HelpCommand());
         CommandRegistry.Register(new ExitCommand());
         CommandRegistry.Register(new MapCommand());
+        CommandRegistry.Register(new MapBackCommand());
         CommandRegistry.Register(new ExploreCommand());
         CommandRegistry.Register(new CatchCommand());
         CommandRegistry.Register(new InspectCommand());

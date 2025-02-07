@@ -29,8 +29,11 @@ A simple "Pokedex" clone console application in C#
 - **`exit`** - Exit the application  
   Example: `exit`
 
-- **`map`** - Show location areas  
+- **`map`** - Show next 20 location areas (paginated results)  
   Example: `map`
+
+- **`mapb`** - Show previous 20 location areas (paginated results)  
+  Example: `mapb`
 
 - **`explore <location>`** - Show Pokemon in location area  
   Example: `explore forest`
