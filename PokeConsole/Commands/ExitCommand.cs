@@ -6,9 +6,11 @@ public class ExitCommand : Command
 {
     public override string Name { get; } = "exit";
     public override string Description { get; } = "Exits PokeConsole";
-    public override void Execute()
+    public override Task ExecuteAsync(params string[] args)
     {
         Console.WriteLine("Closing PokeConsole... Goodbye!");
         Environment.Exit(0);
+        
+        return Task.CompletedTask;
     }
 }

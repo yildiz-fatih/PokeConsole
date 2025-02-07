@@ -2,22 +2,21 @@
 
 namespace PokeConsole;
 /*
- * STEP 2: Add support for commands:
- *          help: prints a help message describing how to use the REPL
- *          exit: exits the program
+ * STEP 3: Add support for the command 'map'
  */
 public class Program
 {
-    public static void Main()
+    public static async Task Main()
     {
-        StartPokeConsole();
+        await StartPokeConsole();
     }
 
-    private static void StartPokeConsole()
+    private static async Task StartPokeConsole()
     {
         /* registers commands to the 'database of commands' (but in memory!) */
         CommandRegistry.Register(new HelpCommand());
         CommandRegistry.Register(new ExitCommand());
+        CommandRegistry.Register(new MapCommand());
         
         while (true)
         {
@@ -40,7 +39,7 @@ public class Program
                 continue;
             }
             
-            command.Execute();
+            await command.ExecuteAsync();
         }
     }
 }
