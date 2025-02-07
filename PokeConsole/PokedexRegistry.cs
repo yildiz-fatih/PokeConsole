@@ -23,11 +23,11 @@ public static class PokedexRegistry
 
 public class Pokemon
 {
-    public string Name;
-    public double Height;
-    public double Weight;
-    public Dictionary<string, int> Stats = new();
-    public List<string> Types = new();
+    public string Name { get; init; }
+    public double Height { get; init; }
+    public double Weight { get; init; }
+    public Dictionary<string, int> Stats { get; init; } = new();
+    public List<string> Types { get; init; } = new();
 
     public override string ToString()
     {
