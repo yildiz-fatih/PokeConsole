@@ -1,4 +1,5 @@
 using PokeConsole.Commands.Base;
+using PokeConsole.Helpers;
 using PokeConsole.Registries;
 
 namespace PokeConsole.Commands;
@@ -10,14 +11,14 @@ public class CatchCommand : Command
     public override async Task ExecuteAsync(params string[] args)
     {
         var pokemonName = args[1];
-        Console.WriteLine($"Throwing a Pokeball at {pokemonName}...");
+        ConsoleHelper.WriteLine($"Throwing a Pokeball at {pokemonName}...");
 
         bool caught = new Random().Next(2) == 0;
         
         if (!caught)
         {
             await Task.Delay(1500);
-            Console.WriteLine($"{pokemonName} escaped!");
+            ConsoleHelper.WriteLine($"{pokemonName} escaped!");
         }
         else
         {
@@ -25,7 +26,7 @@ public class CatchCommand : Command
 
             PokedexRegistry.Register(pokemon);
             
-            Console.WriteLine($"{pokemonName} was caught!");
+            ConsoleHelper.WriteLine($"{pokemonName} was caught!");
         }
     }
 }

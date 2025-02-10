@@ -1,4 +1,5 @@
 using PokeConsole.Commands.Base;
+using PokeConsole.Helpers;
 using PokeConsole.Registries;
 
 namespace PokeConsole.Commands;
@@ -13,12 +14,12 @@ public class InspectCommand : Command
         var pokemon = PokedexRegistry.Get(pokemonName);
         if (pokemon == null)
         {
-            Console.WriteLine($"You have not caught {pokemonName} (yet)!");
+            ConsoleHelper.WriteLine($"You have not caught {pokemonName} (yet)!");
         }
         else
         {
-            Console.WriteLine($"{pokemonName} was caught!");
-            Console.WriteLine(pokemon.ToString());
+            ConsoleHelper.WriteLine($"{pokemonName} was caught!");
+            ConsoleHelper.WriteLine(pokemon.ToString());
         }
         
         return Task.CompletedTask;

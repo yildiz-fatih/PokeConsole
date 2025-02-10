@@ -1,4 +1,5 @@
 using PokeConsole.Commands.Base;
+using PokeConsole.Helpers;
 
 namespace PokeConsole.Commands;
 
@@ -9,14 +10,14 @@ public class ExploreCommand : Command
     public override async Task ExecuteAsync(params string[] args)
     {
         var locationArea = args[1];
-        Console.WriteLine($"Exploring {locationArea}...");
+        ConsoleHelper.WriteLine($"Exploring {locationArea}...");
 
         var pokemons = await PokeApiService.GetPokemonsInLocationArea(locationArea);
 
-        Console.WriteLine("Found Pokemon:");
+        ConsoleHelper.WriteLine("Found Pokemon:");
         foreach (var name in pokemons)
         {
-            Console.WriteLine($"- {name}");
+            ConsoleHelper.WriteLine($"- {name}");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PokeConsole.Commands;
+using PokeConsole.Helpers;
 using PokeConsole.Registries;
 
 namespace PokeConsole;
@@ -17,7 +18,7 @@ public class Program
         
         while (true)
         {
-            Console.Write("PokeConsole > ");
+            ConsoleHelper.Write("PokeConsole > ");
             var input = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -31,7 +32,7 @@ public class Program
 
             if (command == null)
             {
-                Console.WriteLine("Unknown command!\n" +
+                ConsoleHelper.WriteLine("Unknown command!\n" +
                                   "Type 'help' for a list of available commands.");
                 continue;
             }
@@ -42,10 +43,10 @@ public class Program
 
     private static void PrintWelcomeMessage()
     {
-        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                          "  Welcome to PokeConsole!\n" +
-                          "  Type 'help' for commands.\n" +
-                          "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        ConsoleHelper.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
+                                "  Welcome to PokeConsole!\n" +
+                                "  Type 'help' for commands.\n" +
+                                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
     /* registers commands to the 'database of commands' (but in memory!) */
@@ -59,6 +60,7 @@ public class Program
         CommandRegistry.Register(new ExploreCommand());
         CommandRegistry.Register(new CatchCommand());
         CommandRegistry.Register(new InspectCommand());
+        CommandRegistry.Register(new RainbowCommand());
     }
 
 
