@@ -6,7 +6,7 @@ public static class ConsoleHelper
 {
     private static readonly Rainbow Rainbow = new(new RainbowStyle
     {
-        EscapeSequence = EscapeSequence.Ansi,
+        EscapeSequence = EscapeSequence.Spectre,
         Frequency = 0.3,
         Spread = 3.0,
         Seed = 42
