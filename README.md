@@ -46,3 +46,6 @@ A simple "Pokedex" clone console application in C#
 
 - **`pokeconsole`** - Show all Pokemon in your PokeConsole  
   Example: `pokeconsole`
+
+- **`rainbow`** - Toggle colored output  
+  Example: `rainbow`
