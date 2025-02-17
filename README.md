@@ -1,4 +1,4 @@
-# PokeConsole
+# 🕹️ PokeConsole
 
 A simple "Pokedex" clone console application in C#
 
